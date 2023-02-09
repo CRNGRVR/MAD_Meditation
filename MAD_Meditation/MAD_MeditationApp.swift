@@ -12,7 +12,6 @@ struct MAD_MeditationApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(mainController: MainController())
-            //Main()
         }
     }
 }

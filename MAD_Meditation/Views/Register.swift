@@ -17,7 +17,6 @@ struct Register: View {
         VStack{
             Text("Тут должна быть регистрация")
             Button(action: {
-                //nav = "/onboarding"
                 mController.currentScreen = "/onboarding"
             }, label: {
                 Text("Назад")

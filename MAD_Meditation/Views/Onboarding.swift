@@ -9,8 +9,6 @@ import SwiftUI
 
 struct Onboarding: View {
     
-    //@Binding var nav: String
-    
     @ObservedObject var mController: MainController
     
     var body: some View {
@@ -31,7 +29,6 @@ struct Onboarding: View {
                 Text("Привет")
                     .foregroundColor(Color.white)
                     .font(Font.custom("Alegreya-Bold", size: 34))
-                    //.padding(.bottom, 2)
                 
                 Text("Наслаждайся отборочными.\nБудь внимателен.\nДелай хорошо")
                     .foregroundColor(Color.white)
@@ -40,7 +37,6 @@ struct Onboarding: View {
                     .padding(.bottom, 90)
                 
                 Button(action: {
-                    //nav = "/onboarding/logIn"
                     mController.currentScreen = "/onboarding/logIn"
                 }, label: {
                     ZStack{
@@ -49,26 +45,21 @@ struct Onboarding: View {
                         
                         Text("Войти в аккаунт")
                             .foregroundColor(Color.white)
-                            //.font(.system(size: 25))
                             .font(.custom("Alegreya-Medium", size: 25))
                     }
                 })
                 .frame(width: 321, height: 61)
-                //.padding(.bottom, 15)
                 
                 HStack(spacing: 3){
                     Text("Ещё нет аккаунта?")
                         .foregroundColor(Color.white)
-                        //.font(.system(size: 17))
                         .font(.custom("Alegreya-Regular", size: 20))
                     
                     Button(action: {
-                        //nav = "/onboarding/register"
                         mController.currentScreen = "/onboarding/register"
                     }, label: {
                         Text("Зарегистрируйтесь")
                             .foregroundColor(Color.white)
-                            //.font(.system(size: 17))
                             .font(.custom("Alegreya-Regular", size: 20))
                     })
                     

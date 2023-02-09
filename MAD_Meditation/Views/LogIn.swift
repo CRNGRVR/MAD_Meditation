@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct LogIn: View {
-    
-    //@Binding var nav: String
-    
+
     @ObservedObject var logController: LogInController
     @ObservedObject var mController: MainController
     
@@ -63,7 +61,6 @@ struct LogIn: View {
                 Button(action: {
                     
                     if logController.log_in(){
-                        //nav = "/main"
                         mController.currentScreen = "/main"
                     }
                     
@@ -83,7 +80,6 @@ struct LogIn: View {
                 
                 
                 Button(action: {
-                    //nav = "/onboarding/register"
                     mController.currentScreen = "/onboarding/register"
                 }, label: {
                     Text("Register")

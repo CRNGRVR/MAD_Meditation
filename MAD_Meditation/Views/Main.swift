@@ -10,9 +10,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct Main: View {
-    
-    //@Binding var nav: String
-    
+
     @ObservedObject var mController: MainController
     @ObservedObject var loginController: LogInController
     
@@ -78,7 +76,6 @@ struct Main: View {
 struct home: View{
     
     @Binding var nav: String
-    //@Binding var name: String
     
     @ObservedObject var mController: MainController
     @ObservedObject var lController: LogInController
@@ -107,7 +104,6 @@ struct home: View{
                     
                     
                     Text("С возвращением, \(lController.nickName)")
-                        //.font(.system(size: 30))
                         .font(.custom("Alegreya-Bold", size: 30))
                         .foregroundColor(Color.white)
                     
@@ -122,14 +118,11 @@ struct home: View{
                                     feelButton(title: item.title, imgUrl: item.image, position: item.position)
                                 }
                             }
-                            //.padding(.leading, 100)
                             .padding(.leading, 30)
                         }
-                        //.padding(.leading, 150)
                         .padding(.bottom, 20)
                         .frame(width: 390)
-                        //.padding(.leading, 50)
-                        
+            
                     }
                     
                     
@@ -182,11 +175,7 @@ struct profile: View{
                 .ignoresSafeArea(.all)
             
             VStack{
-                
-                
                 HStack{
-                    
-                    
                     Button(action: {
                         
                         lgContr.exit()
@@ -222,9 +211,6 @@ struct menu: View{
         }
     }
 }
-
-
-
 
 
 
@@ -279,7 +265,6 @@ struct quoteCard: View{
             
             VStack(alignment: .leading){
                 Text(title)
-                    //.font(.system(size: 22))
                     .font(.custom("Alegreya-Bold", size: 25))
                     .foregroundColor(Color("LogIn_background"))
                     .padding(.leading, 40)
@@ -287,7 +272,6 @@ struct quoteCard: View{
                     
                 
                 Text(description)
-                    //.font(.system(size: 14))
                     .font(.custom("Alegreya-Medium", size: 15))
                     .foregroundColor(Color("LogIn_background"))
                     .frame(width: 200)
@@ -312,15 +296,3 @@ struct quoteCard: View{
         }
     }
 }
-
-
-
-
-
-//
-//struct Main_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Main()
-//    }
-//}
-
