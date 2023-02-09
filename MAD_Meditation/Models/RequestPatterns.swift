@@ -11,6 +11,7 @@ import Foundation
 struct feelingsR: Codable{
     var data: [feelings_data]
 }
+
 struct feelings_data: Codable, Hashable, Identifiable{
     var id: Int
     var title: String
@@ -24,6 +25,7 @@ struct feelings_data: Codable, Hashable, Identifiable{
 struct quotesR: Codable{
     var data: [quotes_data]
 }
+
 struct quotes_data: Codable, Hashable, Identifiable{
     var id: Int
     var title: String

@@ -8,9 +8,10 @@
                             
 import SwiftUI
 import SDWebImageSwiftUI
+import PhotosUI
 
 struct Main: View {
-
+    
     @ObservedObject var mController: MainController
     @ObservedObject var loginController: LogInController
     
@@ -30,14 +31,14 @@ struct Main: View {
                 sound()
             }
             else if internalNav == "/profile"{
-                profile(mContr: mController, lgContr: loginController)
+                profile(mContr: mController, lgContr: loginController, nav: $internalNav)
             }
             
             
             //  Это должен был быть таббар
             ZStack{
                 Color("LogIn_background")
-                    .frame(width: 600, height: 50)
+                    .frame(width: 600, height: 70)
                     .ignoresSafeArea(.all)
                 
                 HStack(spacing: 95){
@@ -64,8 +65,9 @@ struct Main: View {
                             .opacity(internalNav == "/profile" ? 1 : 0.3)
                     })
                 }
+                .padding(.bottom, 20)
             }
-            .padding(.top, 745)
+            .padding(.top, 780)
             .padding(.trailing, 25)
         }
     }
@@ -95,12 +97,19 @@ struct home: View{
                             .resizable()
                             .frame(width: 100, height: 120)
                         
-                        AsyncImage(url: URL(string: lController.imageUrl))
-                            .clipShape(Circle())
-                            .frame(width: 40, height: 40)
-
+                        AsyncImage(url: URL(string: lController.imageUrl)){phase in
+                            // Без клоужера нормально свойств не применить
+                            if let image = phase.image{
+                                image
+                                    .resizable()
+                                    .frame(width: 36, height: 36)
+                                    .clipShape(Circle())
+                            }
+                        }
+                            
+                        
                     }
-                    .padding(.top, 30)
+                    .padding(.top, 60)
                     
                     
                     Text("С возвращением, \(lController.nickName)")
@@ -122,15 +131,14 @@ struct home: View{
                         }
                         .padding(.bottom, 20)
                         .frame(width: 390)
-            
+                        
                     }
                     
                     
                     if mController.isQuotesLoaded{
-                        
                         VStack(spacing: 25){
                             ForEach(mController.quotes!.data){item in
-                                    quoteCard(title: item.title, description: item.description, imageUrl: item.image)
+                                quoteCard(title: item.title, description: item.description, imageUrl: item.image)
                             }
                         }
                     }
@@ -143,7 +151,7 @@ struct home: View{
                     mController.getQuotes()
                 })
             }
-            .frame(height: 770)
+            .frame(height: 820)
             .padding(.bottom, 120)
         }
         else if nav == "/home/menu"{
@@ -152,45 +160,126 @@ struct home: View{
     }
 }
 
+
 struct sound: View{
     var body: some View{
         ZStack{
             Text("Тут должно было быть прослушивание")
                 .foregroundColor(Color.white)
-            
         }
     }
 }
-
 
 
 struct profile: View{
     
     @ObservedObject var mContr: MainController
     @ObservedObject var lgContr: LogInController
+    @ObservedObject var picker = ImagePicker()
+    
+    @Binding var nav: String
+    
+    var columns: [GridItem] = [
+        GridItem(.fixed(150), spacing: 16),
+        GridItem(.fixed(150), spacing: 16)
+    ]
+    
     
     var body: some View{
         ZStack{
             Color("LogIn_background")
                 .ignoresSafeArea(.all)
             
-            VStack{
-                HStack{
-                    Button(action: {
+            ScrollView(.vertical, showsIndicators: false){
+                
+                VStack{
+                    
+                    HStack(spacing: 80){
+                        Button(action: {
+                            nav = "/home/menu"
+                        }, label: {
+                            Image("Hamburger")
+                        })
                         
-                        lgContr.exit()
-                        mContr.currentScreen = "/onboarding"
+                        Image("Logo")
+                            .resizable()
+                            .frame(width: 100, height: 120)
                         
-                    }, label: {
-                        Text("exit")
-                            .foregroundColor(Color.white)
+                        Button(action: {
+                            lgContr.exit()
+                            mContr.currentScreen = "/onboarding"
+                            
+                        }, label: {
+                            Text("exit")
+                                .foregroundColor(Color.white)
+                        })
+                    }
+                    .padding(.top, 30)
+                    
+                    
+                    AsyncImage(url: URL(string: lgContr.imageUrl)){phase in
+                        
+                        if let image = phase.image{
+                            image
+                                .resizable()
+                                .frame(width: 150, height: 150)
+                                .clipShape(Circle())
+                        }
+                    }
+                    
+                    
+                    Text(lgContr.nickName)
+                        .foregroundColor(Color.white)
+                        .font(.custom("Alegreya-Bold", size: 35))
+                        .padding(.bottom, 17)
+                    
+                    
+                    LazyVGrid(columns: columns, alignment: .center, spacing: 16 ,content: {
+                        
+                        ForEach(picker.images){pic in
+                            
+                            if picker.images != nil{
+                                Button(action: {
+                                    mContr.selectedImage = pic.image
+                                    mContr.currentScreen = "/main/profile/picture"
+                                }, label: {
+                                    ZStack{
+                                        pic.image!
+                                            .resizable()
+                                            .frame(width: 153, height: 115)
+                                            .cornerRadius(20)
+                                        
+                                        Text(mContr.getTime())
+                                            .foregroundColor(Color.white)
+                                            .font(.custom("Alegreya-Bold", size: 18))
+                                            .padding(.trailing, 75)
+                                            .padding(.top, 75)
+                                        
+                                    }
+                                })
+                                
+                            }
+                            
+                        }
+                        
+                        PhotosPicker(selection: $picker.selectedImage, label: {
+                            ZStack{
+                                Color("plus_green")
+                                    .frame(width: 153, height: 115)
+                                    .cornerRadius(20)
+                                
+                                Image(systemName: "plus")
+                                    .foregroundColor(Color.white)
+                            }
+                        })
                     })
+                    
+                    
                 }
             }
         }
     }
 }
-
 
 
 struct menu: View{
@@ -231,16 +320,15 @@ struct feelButton: View{
                     
                     AsyncImage(url: URL(string: imgUrl))
                     
-                    Text(String(position))
+                    Text(String(title))
                         .foregroundColor(Color.white)
                         .font(.custom("Alegreya-Bold", size: 12))
                         .padding(.top, 90)
                     
                 }
             })
-            
-            
         }
+        
     }
 }
 
@@ -262,14 +350,13 @@ struct quoteCard: View{
                 .padding(.top, 30)
             
             
-            
             VStack(alignment: .leading){
                 Text(title)
                     .font(.custom("Alegreya-Bold", size: 25))
                     .foregroundColor(Color("LogIn_background"))
                     .padding(.leading, 40)
-                    
-                    
+                
+                
                 
                 Text(description)
                     .font(.custom("Alegreya-Medium", size: 15))
@@ -292,7 +379,66 @@ struct quoteCard: View{
             .padding(.trailing, 115)
             
             
+        }
+    }
+}
+
+
+
+
+struct ImageView: View{
+    
+    @ObservedObject var mController: MainController
+    
+    var img: Image
+    @State var isZoomed = false
+    
+    var body: some View{
+        
+        ZStack{
+            Color("LogIn_background")
+                .ignoresSafeArea(.all)
             
+            VStack{
+                img
+                    .resizable()
+                    .aspectRatio(contentMode: isZoomed ? .fill : .fit)
+                    .onTapGesture(count: 2) {
+                        isZoomed.toggle()
+                    }
+                    .gesture(
+                        DragGesture(minimumDistance: 100)
+                            .onEnded({value in
+                                
+                                //  Слева направо ->
+                                if value.translation.width > 0{
+                                    mController.currentScreen = "/main"
+                                }
+                            })
+                    )
+                    .padding(.top, 200)
+                    .padding(.bottom, 200)
+                 
+                HStack(spacing: 100){
+                    
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("удалить")
+                            .foregroundColor(Color.white)
+                            .font(.custom("Alegreya-Medium", size: 20))
+                    })
+                    
+                    Button(action: {
+                        mController.currentScreen = "/main"
+                    }, label: {
+                        Text("закрыть")
+                            .foregroundColor(Color.white)
+                            .font(.custom("Alegreya-Medium", size: 20))
+                    })
+                }
+                
+            }
         }
     }
 }

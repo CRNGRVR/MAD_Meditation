@@ -16,7 +16,7 @@ class LogInController: ObservableObject{
     @Published var msg = ""
     @Published var isShowingAlert = false
 
-    
+    //  Загружаются из памяти и используются другими экранами
     @Published var nickName: String = ""
     @Published var imageUrl: String = ""
     
@@ -39,7 +39,7 @@ class LogInController: ObservableObject{
         }
     }
     
-    
+    //  Валидация полей
     func isFillAndPesik() -> Bool{
         
         msg = ""
@@ -82,7 +82,7 @@ class LogInController: ObservableObject{
         
         //  Заглушка
         nickName = "Oleg"
-        imageUrl = #"http:\/\/mskko2021.mad.hakta.pro\/uploads\/feeling\/calm%20(4).png"#
+        imageUrl = #"https://placepic.ru/wp-content/uploads/2019/04/Koala_AH2Q1878_edbook.jpg"#
         
         // Тут должны были быть условия, пришедшие из апи
         if true{
@@ -92,7 +92,6 @@ class LogInController: ObservableObject{
             UserDefaults.standard.set(imageUrl, forKey: "ImageUrl")
             UserDefaults.standard.set("/main", forKey: "FirstScreen")
             UserDefaults.standard.set(mail, forKey: "LastMail")
-            
             
             password = ""
         }

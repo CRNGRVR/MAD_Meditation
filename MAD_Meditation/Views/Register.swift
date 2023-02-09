@@ -9,8 +9,6 @@ import SwiftUI
 
 struct Register: View {
     
-    //@Binding var nav: String
-    
     @ObservedObject var mController: MainController
     
     var body: some View {

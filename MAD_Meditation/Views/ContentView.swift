@@ -26,6 +26,9 @@ struct ContentView: View {
         else if mainController.currentScreen == "/main"{
             Main(mController: mainController, loginController: loginController)
         }
+        else if mainController.currentScreen == "/main/profile/picture"{
+            ImageView(mController: mainController, img: mainController.selectedImage!)
+        }
         
     }
 }
