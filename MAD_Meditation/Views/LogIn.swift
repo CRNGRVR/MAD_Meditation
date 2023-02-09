@@ -74,7 +74,7 @@ struct LogIn: View {
                         
                         Text("Sign in")
                             .foregroundColor(Color.white)
-                            .font(.system(size: 25))
+                            .font(.custom("Alegreya-Medium", size: 25))
                     }
                 })
                 .frame(width: 321, height: 61)
@@ -102,7 +102,7 @@ struct LogIn: View {
                         
                         Text("Профиль")
                             .foregroundColor(Color.white)
-                            .font(.system(size: 25))
+                            .font(.custom("Alegreya-Medium", size: 25))
                     }
                 })
                 .frame(width: 321, height: 61)

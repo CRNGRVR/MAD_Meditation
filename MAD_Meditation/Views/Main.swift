@@ -107,15 +107,16 @@ struct home: View{
                     
                     
                     Text("С возвращением, \(lController.nickName)")
-                        .font(.system(size: 30))
+                        //.font(.system(size: 30))
+                        .font(.custom("Alegreya-Bold", size: 30))
                         .foregroundColor(Color.white)
                     
-                    Text("Каким ты себя чувствуешь сегодня?")
-                        .font(.system(size: 21))
+                    Text("Каким ты себя ощущаешь сегодня?")
+                        .font(.custom("Alegreya-Regular", size: 22))
                         .foregroundColor(Color.gray)
                     
                     if mController.isFeelingsLoaded{
-                        ScrollView(.horizontal, showsIndicators: true){
+                        ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing: 25){
                                 ForEach(mController.feelings!.data){item in
                                     feelButton(title: item.title, imgUrl: item.image, position: item.position)
@@ -243,12 +244,16 @@ struct feelButton: View{
                         .cornerRadius(20)
                     
                     AsyncImage(url: URL(string: imgUrl))
+                    
+                    Text(String(position))
+                        .foregroundColor(Color.white)
+                        .font(.custom("Alegreya-Bold", size: 12))
+                        .padding(.top, 90)
+                    
                 }
             })
             
-            Text(title)
-                .foregroundColor(Color.white)
-                .font(.system(size: 10))
+            
         }
     }
 }
@@ -274,17 +279,19 @@ struct quoteCard: View{
             
             VStack(alignment: .leading){
                 Text(title)
-                    .font(.system(size: 22))
+                    //.font(.system(size: 22))
+                    .font(.custom("Alegreya-Bold", size: 25))
                     .foregroundColor(Color("LogIn_background"))
                     .padding(.leading, 40)
                     
                     
                 
                 Text(description)
-                    .font(.system(size: 14))
+                    //.font(.system(size: 14))
+                    .font(.custom("Alegreya-Medium", size: 15))
                     .foregroundColor(Color("LogIn_background"))
                     .frame(width: 200)
-                    .padding(.leading, 40)
+                    .padding(.leading, 35)
                 
                 Button(action: {}, label: {
                     ZStack{
@@ -292,7 +299,7 @@ struct quoteCard: View{
                             .frame(width: 138, height: 39)
                             .cornerRadius(10)
                         
-                        Text("Подробнее")
+                        Text("подробнее")
                             .foregroundColor(Color.white)
                     }
                 })

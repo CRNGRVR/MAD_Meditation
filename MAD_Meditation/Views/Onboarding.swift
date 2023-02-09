@@ -31,7 +31,7 @@ struct Onboarding: View {
                 Text("Привет")
                     .foregroundColor(Color.white)
                     .font(Font.custom("Alegreya-Bold", size: 34))
-                    .padding(.bottom, 2)
+                    //.padding(.bottom, 2)
                 
                 Text("Наслаждайся отборочными.\nБудь внимателен.\nДелай хорошо")
                     .foregroundColor(Color.white)
@@ -49,16 +49,18 @@ struct Onboarding: View {
                         
                         Text("Войти в аккаунт")
                             .foregroundColor(Color.white)
-                            .font(.system(size: 25))
+                            //.font(.system(size: 25))
+                            .font(.custom("Alegreya-Medium", size: 25))
                     }
                 })
                 .frame(width: 321, height: 61)
-                .padding(.bottom, 15)
+                //.padding(.bottom, 15)
                 
                 HStack(spacing: 3){
                     Text("Ещё нет аккаунта?")
                         .foregroundColor(Color.white)
-                        .font(.system(size: 17))
+                        //.font(.system(size: 17))
+                        .font(.custom("Alegreya-Regular", size: 20))
                     
                     Button(action: {
                         //nav = "/onboarding/register"
@@ -66,7 +68,8 @@ struct Onboarding: View {
                     }, label: {
                         Text("Зарегистрируйтесь")
                             .foregroundColor(Color.white)
-                            .font(.system(size: 17))
+                            //.font(.system(size: 17))
+                            .font(.custom("Alegreya-Regular", size: 20))
                     })
                     
                 }

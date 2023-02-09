@@ -10,7 +10,6 @@ import Alamofire
 
 class MainController: ObservableObject{
     
-    
     //  Навигация
     @Published var currentScreen: String = ""
 
@@ -28,17 +27,11 @@ class MainController: ObservableObject{
     init() {
         currentScreen = getFirstScreen()
     }
-    
-    
-    
-    
+
     
     
     
     //  Главный экран
-    @Published var name = ""
-    @Published var imageUrl = ""
-    
     @Published var feelings: feelingsR? = nil{
         
         didSet{
@@ -78,6 +71,7 @@ class MainController: ObservableObject{
                     self.feelings = response.value!
                 }
             }
+        
     }
     
     
@@ -91,9 +85,5 @@ class MainController: ObservableObject{
                 }
             }
     }
-    
-    
-    
-    
     
 }

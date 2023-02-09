@@ -30,6 +30,13 @@ class LogInController: ObservableObject{
             mail = ""
         }
         
+        if UserDefaults.standard.string(forKey: "Name") != nil{
+            nickName = UserDefaults.standard.string(forKey: "Name")!
+        }
+        
+        if UserDefaults.standard.string(forKey: "ImageUrl") != nil{
+            imageUrl = UserDefaults.standard.string(forKey: "ImageUrl")!
+        }
     }
     
     

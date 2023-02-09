@@ -30,20 +30,18 @@ struct ContentView: View {
 //        }
         
         
-                if mainController.currentScreen == "/onboarding"{
-                    Onboarding(mController: mainController)
-                }
-                else if mainController.currentScreen == "/onboarding/logIn"{
-                    LogIn(logController: loginController, mController: mainController)
-                }
-                else if mainController.currentScreen == "/onboarding/register"{
-                    Register(mController: mainController)
-                }
-                else if mainController.currentScreen == "/main"{
-                    Main(mController: mainController, loginController: loginController)
-                }
-      
-        
+        if mainController.currentScreen == "/onboarding"{
+            Onboarding(mController: mainController)
+        }
+        else if mainController.currentScreen == "/onboarding/logIn"{
+            LogIn(logController: loginController, mController: mainController)
+        }
+        else if mainController.currentScreen == "/onboarding/register"{
+            Register(mController: mainController)
+        }
+        else if mainController.currentScreen == "/main"{
+            Main(mController: mainController, loginController: loginController)
+        }
         
     }
 }
