@@ -32,3 +32,19 @@ struct quotes_data: Codable, Hashable, Identifiable{
     var image: String
     var description: String
 }
+
+
+
+struct loginInput: Encodable{
+    
+    var email: String
+    var password: String
+}
+struct loginOutput: Codable{
+    var id: String
+    var email: String
+    var nickName: String
+    var avatar: String
+    var token: String
+   
+}

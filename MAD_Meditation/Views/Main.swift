@@ -13,7 +13,6 @@ import PhotosUI
 struct Main: View {
     
     @ObservedObject var mController: MainController
-    @ObservedObject var loginController: LogInController
     
     @State var internalNav = "/home"
     
@@ -25,13 +24,13 @@ struct Main: View {
             
             
             if internalNav == "/home" || internalNav == "/home/menu"{
-                home(nav: $internalNav, mController: mController, lController: loginController)
+                home(nav: $internalNav, mController: mController)
             }
             else if internalNav == "/sound"{
                 sound()
             }
             else if internalNav == "/profile"{
-                profile(mContr: mController, lgContr: loginController, nav: $internalNav)
+                profile(mContr: mController, nav: $internalNav)
             }
             
             
@@ -80,7 +79,6 @@ struct home: View{
     @Binding var nav: String
     
     @ObservedObject var mController: MainController
-    @ObservedObject var lController: LogInController
     
     var body: some View{
         if nav == "/home"{
@@ -97,7 +95,7 @@ struct home: View{
                             .resizable()
                             .frame(width: 100, height: 120)
                         
-                        AsyncImage(url: URL(string: lController.imageUrl)){phase in
+                        AsyncImage(url: URL(string: mController.imageUrl)){phase in
                             // Без клоужера нормально свойств не применить
                             if let image = phase.image{
                                 image
@@ -112,7 +110,7 @@ struct home: View{
                     .padding(.top, 60)
                     
                     
-                    Text("С возвращением, \(lController.nickName)")
+                    Text("С возвращением, \(mController.nickName)")
                         .font(.custom("Alegreya-Bold", size: 30))
                         .foregroundColor(Color.white)
                     
@@ -174,7 +172,6 @@ struct sound: View{
 struct profile: View{
     
     @ObservedObject var mContr: MainController
-    @ObservedObject var lgContr: LogInController
     @ObservedObject var picker = ImagePicker()
     
     @Binding var nav: String
@@ -206,7 +203,7 @@ struct profile: View{
                             .frame(width: 100, height: 120)
                         
                         Button(action: {
-                            lgContr.exit()
+                            mContr.exit()
                             mContr.currentScreen = "/onboarding"
                             
                         }, label: {
@@ -217,7 +214,7 @@ struct profile: View{
                     .padding(.top, 30)
                     
                     
-                    AsyncImage(url: URL(string: lgContr.imageUrl)){phase in
+                    AsyncImage(url: URL(string: mContr.imageUrl)){phase in
                         
                         if let image = phase.image{
                             image
@@ -228,7 +225,7 @@ struct profile: View{
                     }
                     
                     
-                    Text(lgContr.nickName)
+                    Text(mContr.nickName)
                         .foregroundColor(Color.white)
                         .font(.custom("Alegreya-Bold", size: 35))
                         .padding(.bottom, 17)

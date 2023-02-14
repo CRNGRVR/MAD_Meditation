@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LogIn: View {
 
-    @ObservedObject var logController: LogInController
     @ObservedObject var mController: MainController
     
     var body: some View {
@@ -33,7 +32,7 @@ struct LogIn: View {
                     
                 
                 VStack{
-                    TextField("Email", text: $logController.mail)
+                    TextField("Email", text: $mController.mail)
                         .frame(width: 305, height: 40)
                         .font(.system(size: 18))
                         .foregroundColor(Color.gray)
@@ -46,7 +45,7 @@ struct LogIn: View {
                 
                 
                 VStack{
-                    SecureField("Пароль", text: $logController.password)
+                    SecureField("Пароль", text: $mController.password)
                         .frame(width: 305, height: 40)
                         .font(.system(size: 18))
                         .foregroundColor(Color.gray)
@@ -60,10 +59,8 @@ struct LogIn: View {
                 
                 Button(action: {
                     
-                    if logController.log_in(){
-                        mController.currentScreen = "/main"
-                    }
-                    
+                    mController.log_in()
+
                 }, label: {
                     ZStack{
                         Color("button")
@@ -76,7 +73,7 @@ struct LogIn: View {
                 })
                 .frame(width: 321, height: 61)
                 .padding(.bottom, 20)
-                .alert(logController.msg, isPresented: $logController.isShowingAlert, actions: {})
+                .alert(mController.msg, isPresented: $mController.isShowingAlert, actions: {})
                 
                 
                 Button(action: {

@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var mainController: MainController = MainController()
-    @ObservedObject var loginController: LogInController = LogInController()
     
     var body: some View {
 
@@ -18,13 +17,13 @@ struct ContentView: View {
             Onboarding(mController: mainController)
         }
         else if mainController.currentScreen == "/onboarding/logIn"{
-            LogIn(logController: loginController, mController: mainController)
+            LogIn(mController: mainController)
         }
         else if mainController.currentScreen == "/onboarding/register"{
             Register(mController: mainController)
         }
         else if mainController.currentScreen == "/main"{
-            Main(mController: mainController, loginController: loginController)
+            Main(mController: mainController)
         }
         else if mainController.currentScreen == "/main/profile/picture"{
             ImageView(mController: mainController, img: mainController.selectedImage!)

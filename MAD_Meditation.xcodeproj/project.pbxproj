@@ -17,7 +17,6 @@
 		2C7937A629901104007C6D59 /* RequestPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7937A529901104007C6D59 /* RequestPatterns.swift */; };
 		2C7937A829901785007C6D59 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7937A729901785007C6D59 /* Main.swift */; };
 		2C8F6592298FFC460065F66B /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8F6591298FFC460065F66B /* LogIn.swift */; };
-		2C8F6594299002650065F66B /* LogInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8F6593299002650065F66B /* LogInController.swift */; };
 		2C8F65962990076B0065F66B /* Splash Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C8F65952990076A0065F66B /* Splash Screen.storyboard */; };
 		2C8F659929900F240065F66B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2C8F659829900F240065F66B /* Alamofire */; };
 		2C93998B2996565900D4AE83 /* Alegreya-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C9399812996565800D4AE83 /* Alegreya-ExtraBold.ttf */; };
@@ -47,7 +46,6 @@
 		2C7937A529901104007C6D59 /* RequestPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPatterns.swift; sourceTree = "<group>"; };
 		2C7937A729901785007C6D59 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
 		2C8F6591298FFC460065F66B /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
-		2C8F6593299002650065F66B /* LogInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInController.swift; sourceTree = "<group>"; };
 		2C8F65952990076A0065F66B /* Splash Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Splash Screen.storyboard"; sourceTree = "<group>"; };
 		2C9399812996565800D4AE83 /* Alegreya-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alegreya-ExtraBold.ttf"; sourceTree = "<group>"; };
 		2C9399822996565800D4AE83 /* Alegreya-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Alegreya-Italic.ttf"; sourceTree = "<group>"; };
@@ -132,7 +130,6 @@
 		2C05936D298FB6C600410D73 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2C8F6593299002650065F66B /* LogInController.swift */,
 				2CD72B0D299138C5004B26CC /* MainController.swift */,
 				2CA968BC299522D100F82E17 /* ImagePicker.swift */,
 			);
@@ -259,7 +256,6 @@
 				2CA968BB29951E5600F82E17 /* PictureUnit.swift in Sources */,
 				2C7937A629901104007C6D59 /* RequestPatterns.swift in Sources */,
 				2CD72B0E299138C6004B26CC /* MainController.swift in Sources */,
-				2C8F6594299002650065F66B /* LogInController.swift in Sources */,
 				2C059361298FB5DF00410D73 /* ContentView.swift in Sources */,
 				2CA968BD299522D100F82E17 /* ImagePicker.swift in Sources */,
 				2C059373298FB79A00410D73 /* Onboarding.swift in Sources */,
